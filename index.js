@@ -1,13 +1,25 @@
-const {Builder, By, Key, util} = require("selenium-webdriver");
+package com.qascript;
 
-async function ex(){
-    let driver = await new Builder().forBrowser("chrome").build();
-    await driver.get("http://flipkart.com");
-    await driver.findElement(By.xpath('/html/body/div[2]/div/div/button')).click();
-    await driver.findElement(By.xpath('/html/body/div[1]/div/div[1]/div[1]/div[2]/div[3]/div/div/div/a')).click();
-    await driver.findElement(By.className('_2IX_2-')).sendKeys("8979008539");
-    await driver.findElement(By.xpath('/html/body/div[2]/div/div/div/div/div[2]/div/form/div[2]/input')).sendKeys("Prince@2017");
-    await driver.findElement(By.xpath('/html/body/div[2]/div/div/div/div/div[2]/div/form/div[3]/button')).click();
-  
+import org.junit.Assert;
+import org.junit.Test;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+
+public class FirstTest {
+
+
+    @Test
+    public void OpenBrowser()  {
+        WebDriver driver;
+        System.setProperty("webdriver.chrome.driver", "/usr/bin/google-chrome");
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("headless");
+        driver = new ChromeDriver(options);
+        driver.get("https://www.google.com");
+        System.out.println(driver.getTitle());
+        Assert.assertTrue("Page title is not correct",driver.getTitle().equals("Google"));
+    }
+
+
 }
-ex();
